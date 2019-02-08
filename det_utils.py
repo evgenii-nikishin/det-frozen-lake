@@ -23,8 +23,6 @@ def make_det(env):
         for a in range(env.env.nA):
             if len(env.env.P[s][a]) > 1:
                 s_new = next_s(s, a, grid_size=env.env.ncol)
-                tmp = list(filter(lambda x: x[1] == s_new, env.env.P[s][a]))
-                # assert len(tmp)>0, '{} {}'.format(s, a)
-                corrected_P = tmp[0]
+                corrected_P = list(filter(lambda x: x[1] == s_new, env.env.P[s][a]))[0]
                 env.env.P[s][a] = [(1.0,) + corrected_P[1:]]
     return env
